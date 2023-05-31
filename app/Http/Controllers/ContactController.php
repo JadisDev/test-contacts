@@ -60,7 +60,7 @@ class ContactController extends Controller
                 'title' => 'Update contact'
             ]);
         } catch (NotFoundModelException $e) {
-            return redirect("/contacts")->with("error", $e->getMessage());
+            return redirect("/contact/19")->with("error", $e->getMessage());
         }
     }
 
@@ -70,9 +70,9 @@ class ContactController extends Controller
             $contact = $this->service->update($requet);
             return redirect("/contacts")->with("success", "updated contact: " . $contact->name);
         } catch (NotFoundModelException $e) {
-            return redirect("/contact")->with("error", $e->getMessage());
+            return redirect("/contact/" . $requet->id)->with("error", $e->getMessage());
         } catch (UniqueException $e) {
-            return redirect("/contact")->with("error", $e->getMessage());
+            return redirect("/contact/" . $requet->id)->with("error", $e->getMessage());
         }
     }
 
