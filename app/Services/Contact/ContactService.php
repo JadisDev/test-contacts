@@ -68,6 +68,7 @@ class ContactService implements ContactServiceInterface
 
     public function delete(int $id): ?Contact
     {
+        $this->show($id);
         return $this->repository->delete($id);
     }
 }

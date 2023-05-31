@@ -41,8 +41,8 @@
                                             role="button">Update</a>
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-danger btn-update"
-                                            data-update="{{ $contact['id'] }}">
+                                        <button type="button" class="btn btn-danger btn-delete"
+                                            data-delete="{{ $contact['id'] }}">
                                             Delete
                                         </button>
                                     </td>
@@ -68,4 +68,13 @@
             </div>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function() {
+            $('.btn-delete').click(function() {
+                $('#myModal').modal('show');
+            });
+        });
+    </script>
+
 @stop

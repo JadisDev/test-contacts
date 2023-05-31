@@ -32,3 +32,4 @@ Route::get('/contact/detail/{id}', [ContactController::class, 'showView']);
 //actions
 Route::post('/contact', [ContactController::class, 'store'])->name("contact.store");
 Route::patch('/contact', [ContactController::class, 'update'])->name("contact.update");
+Route::delete('/contact/{id}', [ContactController::class, 'delete'])->name('contact.destroy');

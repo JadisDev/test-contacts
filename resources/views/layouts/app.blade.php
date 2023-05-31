@@ -11,10 +11,20 @@
     </header>
     <div id="main" class="container">
         @yield('content')
+        @include('includes.modal')
     </div>
     <footer class="row footer">
         @include('includes.footer')
     </footer>
+
+    <script>
+        $(document).ready(function() {
+            $('.btn-delete').click(function() {
+                $('#myModal').modal('show');
+            });
+        });
+    </script>
+
 </body>
 
 </html>

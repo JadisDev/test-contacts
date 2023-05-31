@@ -13,7 +13,7 @@
             </div>
             <div class="col-md-6">
                 <a class="btn btn-warning" href="/contact/{{ $contact['id'] }}" role="button">Update</a>
-                <button type="button" class="btn btn-danger btn-update" data-update="{{ $contact['id'] }}">
+                <button type="button" class="btn btn-danger btn-delete" data-update="{{ $contact['id'] }}">
                     Delete
                 </button>
             </div>

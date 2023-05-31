@@ -89,7 +89,13 @@ class ContactController extends Controller
         }
     }
 
-    public function delete()
+    public function delete(int $id)
     {
+        try {
+            $contact = $this->service->delete($id);
+            return redirect("/contacts")->with("success", "deleted record: " . $contact->name);
+        } catch (NotFoundModelException $e) {
+            return redirect("/contacts")->with("error", $e->getMessage());
+        }
     }
 }
