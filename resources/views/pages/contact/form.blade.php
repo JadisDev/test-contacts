@@ -32,15 +32,15 @@
                     value="{{ $contact['id'] }}">
                 <div class="mb-3">
                     <label for="name" class="form-label">Name</label>
-                    <input type="text" id="name" class="form-control" name="name" value="{{ $contact['name'] }}">
+                    <input type="text" id="name" class="form-control" name="name" value="{{ $contact['name'] }}" required">
                 </div>
                 <div class="mb-3">
                     <label for="contact" class="form-label">Contact</label>
-                    <input type="text" id="contact" class="form-control" name="contact" value="{{ $contact['contact'] }}">
+                    <input type="text" id="contact" class="form-control" name="contact" value="{{ $contact['contact'] }}" required>
                 </div>
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
-                    <input type="text" id="email" class="form-control" name="email" value="{{ $contact['email'] }}">
+                    <input type="text" id="email" class="form-control" name="email" value="{{ $contact['email'] }}" required>
                 </div>
                 <button type="submit" class="btn btn-primary">{{ $title }}</button>
                 </form>

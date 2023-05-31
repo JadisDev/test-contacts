@@ -26,7 +26,7 @@ class ContactController extends Controller
         ]);
     }
 
-    public function newContactView()
+    public function formContactView()
     {
         return view("pages.contact.form", [
             'contact' => [
