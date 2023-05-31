@@ -2,12 +2,16 @@
 
 namespace App\Services\Contact;
 
+use App\Exceptions\NotFoundModelException;
+use App\Exceptions\UniqueException;
 use App\Http\Requests\StoreContactRequest;
 use App\Http\Requests\UpdateContactRequest;
 use App\Interfaces\Repository\RepositoryInterface;
 use App\Interfaces\Service\Contact\ContactServiceInterface;
 use App\Models\Contact;
+use Exception;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\QueryException;
 
 class ContactService implements ContactServiceInterface
 {
@@ -24,25 +28,37 @@ class ContactService implements ContactServiceInterface
         return $this->repository->getAll();
     }
 
-    public function store(StoreContactRequest $request): Contact
+    public function store(StoreContactRequest $request): ?Contact
     {
-        return $this->repository->create($request->all());
+        try {
+            return $this->repository->create($request->all());
+        } catch (QueryException $e) {
+            if ($e->getCode() === "23505") {
+                throw new UniqueException("contact/email");
+            }
+            throw $e;
+        } catch (Exception $e) {
+            throw $e;
+        }
     }
 
-    public function show(int $id): Contact
+    public function show(int $id): ?Contact
     {
-        return $this->repository->getById($id);
+        $contact = $this->repository->getById($id);
+        if (!$contact) {
+            throw new NotFoundModelException("contact not found");
+        }
+        return $contact;
     }
 
-    public function update(UpdateContactRequest $request): Contact
+    public function update(UpdateContactRequest $request): ?Contact
     {
         $id = $request->get('id');
         return $this->repository->update($id, $request->all());
     }
 
-    public function delete(int $id): Contact
+    public function delete(int $id): ?Contact
     {
         return $this->repository->delete($id);
     }
-
 }
