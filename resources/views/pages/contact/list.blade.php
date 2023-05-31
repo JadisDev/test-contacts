@@ -13,14 +13,21 @@
                     </div>
                 @endif
 
-                <table id="example" class="display" style="width:100%">
+                @if (session('error'))
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        {{ session('error') }}
+                    </div>
+                @endif
+
+                <table id="table" class="display" style="width:100%">
                     <thead>
                         <tr>
                             <th>Name</th>
                             <th>Contact</th>
-                            <th>Email</th>
                             <th>Update</th>
                             <th>Delete</th>
+                            <th>Detail</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -29,16 +36,19 @@
                                 <tr>
                                     <td>{{ $contact['name'] }} </td>
                                     <td>{{ $contact['contact'] }}</td>
-                                    <td>{{ $contact['email'] }}</td>
                                     <td>
-                                        <button type="button" class="btn btn-warning" data-update="{{ $contact['id'] }}">
-                                            Update
+                                        <a class="btn btn-warning" href="/contact/{{ $contact['id'] }}"
+                                            role="button">Update</a>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-danger btn-update"
+                                            data-update="{{ $contact['id'] }}">
+                                            Delete
                                         </button>
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-danger" data-update="{{ $contact['id'] }}">
-                                            Delete
-                                        </button>
+                                        <a class="btn btn-info" href="/contact/detail/{{ $contact['id'] }}"
+                                            role="button">Detail</a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -48,9 +58,9 @@
                         <tr>
                             <th>Name</th>
                             <th>Contact</th>
-                            <th>Email</th>
                             <th>Update</th>
                             <th>Delete</th>
+                            <th>Detail</th>
                         </tr>
                     </tfoot>
                 </table>
@@ -58,10 +68,4 @@
             </div>
         </div>
     </div>
-
-    <script>
-        $(document).ready(function() {
-            $('#example').DataTable();
-        });
-    </script>
 @stop
