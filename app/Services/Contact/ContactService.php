@@ -53,8 +53,17 @@ class ContactService implements ContactServiceInterface
 
     public function update(UpdateContactRequest $request): ?Contact
     {
-        $id = $request->get('id');
-        return $this->repository->update($id, $request->all());
+        try {
+            $id = $request->get('id');
+            return $this->repository->update($id, $request->all());
+        } catch (QueryException $e) {
+            if ($e->getCode() === "23505") {
+                throw new UniqueException("contact/email");
+            }
+            throw $e;
+        } catch (Exception $e) {
+            throw $e;
+        }
     }
 
     public function delete(int $id): ?Contact
