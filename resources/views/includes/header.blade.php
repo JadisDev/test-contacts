@@ -10,6 +10,10 @@
             <li class='item'>
                 <a href="/logout"> Logout </a>
             </li>
+        @else
+            <li class='item'>
+                <a href="/"> Login </a>
+            </li>
         @endif
     </ul>
 
