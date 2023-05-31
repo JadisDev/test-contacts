@@ -21,7 +21,7 @@ class ContactRepository implements RepositoryInterface
         return $this->contact->all();
     }
 
-    public function getById($id): Contact
+    public function getById($id): ?Contact
     {
         return $this->contact->find($id);
     }
@@ -31,7 +31,7 @@ class ContactRepository implements RepositoryInterface
         return $this->contact->create($data);
     }
 
-    public function update($id, array $data): Contact
+    public function update($id, array $data): ?Contact
     {
         $contact = $this->getById($id);
         if ($contact) {
@@ -41,7 +41,7 @@ class ContactRepository implements RepositoryInterface
         return null;
     }
 
-    public function delete($id): Contact
+    public function delete($id): ?Contact
     {
         $contact = $this->getById($id);
         if ($contact) {
