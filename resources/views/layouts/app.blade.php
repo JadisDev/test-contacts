@@ -22,6 +22,10 @@
             $('.btn-delete').click(function() {
                 $('#myModal').modal('show');
             });
+
+            $('.btn-close-modal').click(function() {
+                $('#myModal').modal('hide');
+            });
         });
     </script>
 
