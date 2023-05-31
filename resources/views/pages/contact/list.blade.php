@@ -36,20 +36,26 @@
                                 <tr>
                                     <td>{{ $contact['name'] }} </td>
                                     <td>{{ $contact['contact'] }}</td>
-                                    <td>
-                                        <a class="btn btn-warning" href="/contact/{{ $contact['id'] }}"
-                                            role="button">Update</a>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-danger btn-delete"
-                                            data-delete="{{ $contact['id'] }}">
-                                            Delete
-                                        </button>
-                                    </td>
-                                    <td>
-                                        <a class="btn btn-info" href="/contact/detail/{{ $contact['id'] }}"
-                                            role="button">Detail</a>
-                                    </td>
+                                    @if (session()->has('login'))
+                                        <td>
+                                            <a class="btn btn-warning" href="/contact/{{ $contact['id'] }}"
+                                                role="button">Update</a>
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-danger btn-delete"
+                                                data-delete="{{ $contact['id'] }}">
+                                                Delete
+                                            </button>
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-info" href="/contact/detail/{{ $contact['id'] }}"
+                                                role="button">Detail</a>
+                                        </td>
+                                    @else
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    @endif
                                 </tr>
                             @endforeach
                         @endif
